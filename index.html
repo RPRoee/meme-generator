@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/main.css">
+    <title>meme generator</title>
+</head>
+<body onload="onInit()">
+    <!-- <div class="screen" onclilck="onToggleMenu()"></div> -->
+
+    <header>
+        <div class="header-container main-layout flex space-bwtween align-center">
+            <div class="logo flex align-center justify-center">
+                MEMEGEN
+            </div>
+            <nav>
+                <ul class="header-nav flex clean-list">
+                    <li class="flex align-center"><a class="flex align-center justify-center memes" href="# " data-translate="memes">memes</a></li>
+                    <li class="flex align-center"><a class="flex align-center justify-center gallery active" href="#" data-translate="gallery">gallery</a></li>
+                    <li class="flex align-center"><a class="flex align-center justify-center about" href="# " data-translate="about">about</a></li>
+                    <li class="flex align-center"><button class="translate-btn flex align-center justify-center" onclick="onToggleLang()">HE/ENG</button></li>
+                </ul>
+            </nav>
+            <button class="btn-menu-toggle" onclick="onMenu()">☰</button>
+        </div>
+    </header>
+    <main>
+        <section class="gallery-page page-layout">
+            <nav class="flex main-layout">
+                <div class="search-box">
+                    <input list="search-words" type="text" name="filter" data-translate="Search" placeholder="search" onchange="onFilterImgs(this.value)">
+                    <datalist id="search-words">
+                        <option value="all">
+                        <option value="funny">
+                        <option value="happy">
+                        <option value="animal">
+                        <option value="man">
+                        <option value="cartoon">
+                        <option value="baby">
+                    </datalist>
+                    <img src="style/DESIGN/ICONS/search-icon.png" />
+                </div>
+                <ul class="search-words clean-list">
+                </ul>
+            </nav>
+            <main>
+                <label>
+                    <p>Upload</p>
+                    <input type="file" accept="image/png, image/jpeg" name="file" onchange="onImgInput(event)">
+                </label>
+                <div class="images-container main-layout">
+                </div>
+            </main>
+        </section>
+
+        <section class="meme-editor main-layout flex" hidden>
+            <section class="canvas-container">
+                <canvas class="main-canvas"></canvas>
+            </section>
+            <section class="tools-container flex align-center">
+                <input type="text" name="text" id="text" placeholder="Type text here" data-translate="Text" oninput="onEditText(event)" autocomplete="off" autofocus>
+                <div class="line-tools flex">
+                    <button class="tools-btn switch-line" onclick="onSwitchLine()"><img
+                            src="style/DESIGN/ICONS/up-and-down-opposite-double-arrows-side-by-side.png">
+                    </button>
+                    <button class="tools-btn add" onclick="onAddLine()">
+                        <img src="style/DESIGN/ICONS/add.png">
+                    </button>
+                    <button class="tools-btn delete" onclick="onDeleteLine()">
+                        <img src="style/DESIGN/ICONS/trash.png">
+                    </button>
+                </div>
+                <div class="text-tools">
+                    <button class="tools-btn font-up" onclick="onFontSizeChange(2)">
+                        <img src="style/DESIGN/ICONS/increase font - icon.png">
+                    </button>
+                    <button class="tools-btn font-down" onclick="onFontSizeChange(-2)">
+                        <img src="style/DESIGN/ICONS/decrease font - icon.png">
+                    </button class="tools-btn">
+                    <button class="tools-btn">
+                        <img src="style/DESIGN/ICONS/align-to-left.png" onclick="onAlignText('end')">
+                    </button>
+                    <button class="tools-btn">
+                        <img src="style/DESIGN/ICONS/center-text-alignment.png" onclick="onAlignText('center')">
+                    </button>
+                    <button class="tools-btn"><img src="style/DESIGN/ICONS/align-to-right.png"
+                            onclick="onAlignText('start')"></button>
+                    <select class="tools-btn font-pick" onchange="onSetFontFamily(this.value)">
+                        <option value="Impact-new" class="impact">IMPACT</option>
+                        <option value="Arial" class="arial">ARIAL</option>
+                        <option value="Poppins-medium" class="poppins">POPPINS</option>
+                    </select>
+                    <label>
+                        <img class="tools-btn color-btn" src="style/DESIGN/ICONS/text stroke.png">
+                        <input type="color" name="stroke-color" onchange="onColorChange('stroke', this.value)">
+                    </label>
+                    <label>
+                        <img class="tools-btn color-btn" src="style/DESIGN/ICONS/paint-board-and-brush.png">
+                        <input type="color" name="font-color" onchange="onColorChange('font', this.value)">
+                    </label>
+                </div>
+                <div class="rect-btn-container flex">
+                    <button class="rect-btn save-btn" onclick="onSaveMeme()" data-translate="save">Save</button>
+                    <button class="rect-btn share-btn" onclick=" onShareMeme()" data-translate="share">Share</button>
+                    <a href="#" class="rect-btn download-btn" onclick="onDownloadMeme(this)" download="my-img.jpg" data-translate="download">download</a>
+                </div>
+            </section>
+        </section>
+
+        <section class="memes-page page-layout" hidden>
+            <div class="memes-container main-layout"></div>
+        </section>
+
+    </main>
+    <section class="modal-about flex">
+        <button onclick="onToggleModal()">x</button>
+        <h1 data-translate="about">about</h1>
+        <h4 data-translate="about-subtitle">blahblahblah</h4>
+        <p data-translate="about-text">blahblah
+        </p>
+        <h3 data-translate="Enjoy">Enjoy!</h3>
+    </section>
+
+    <script src="js/service/localization.js"></script>
+    <script src="js/service/storage-service.js"></script>
+    <script src="js/service/meme-service.js"></script>
+    <script src="js/service/gallery-service.js"></script>
+    <script src="js/controller/memes-controller.js"></script>
+    <script src="js/controller/editor-controller.js"></script>
+    <script src="js/controller/gallery-controller.js"></script>
+    <script src="js/controller/main-controller.js"></script>
+</body>
+
+</html>
