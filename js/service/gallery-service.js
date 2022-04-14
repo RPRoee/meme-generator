@@ -1,11 +1,11 @@
 'use strict'
 
-const gKeywords = { 'all': 0, 'happy': 3, 'funny': 4, 'animal': 10, 'man': 6, 'cartoon': 20, 'baby': 3 };
+const gKeywords = { 'all': 0, 'women': 2, 'happy': 8, 'dance': 2, 'idiots': 7, 'fascism': 4, 'men': 15, 'animals': 4, 'cute': 8, 'sleep': 2, 'babies': 5, 'smart': 4 };
 const KEY = 'imgsDB';
 let gImages;
 let gFilterBy = 'all';
 
-_createGImgs();
+_createGImages();
 
 function setFilter(word) {
     word = word.toLowerCase();
@@ -24,29 +24,36 @@ function _createGImages() {
     if (images && images.length) gImages = images;
     else {
         gImages = [];
-        gImages.push(_createImg(1, ['funny', 'man']));
-        gImages.push(_createImg(2, ['animal']));
-        gImages.push(_createImg(3, ['animal', 'baby']));
-        gImages.push(_createImg(4, ['animal']));
-        gImages.push(_createImg(5, ['funny', 'baby']));
-        gImages.push(_createImg(6, ['funny', 'man']));
-        gImages.push(_createImg(7, ['funny', 'baby']));
-        gImages.push(_createImg(8, ['funny', 'man']));
-        gImages.push(_createImg(9, ['funny', 'baby', 'happy']));
-        gImages.push(_createImg(10, ['funny', 'man', 'happy']));
-        gImages.push(_createImg(11, ['funny']));
-        gImages.push(_createImg(12, ['funny', 'man']));
-        gImages.push(_createImg(13, ['man']));
-        gImages.push(_createImg(14, ['man']));
-        gImages.push(_createImg(15, ['man', 'happy']));
-        gImages.push(_createImg(16, ['funny', 'man']));
-        gImages.push(_createImg(17, ['man']));
-        gImages.push(_createImg(18, ['cartoon']));
+        gImages.push(_createImage(1, ['women', 'happy', 'dance']))
+        gImages.push(_createImage(2, ['idiots', 'fascism', 'men']))
+        gImages.push(_createImage(3, ['animals', 'cute', 'happy']))
+        gImages.push(_createImage(4, ['animals', 'cute', 'sleep', 'babies']))
+        gImages.push(_createImage(5, ['cute', 'babies']))
+        gImages.push(_createImage(6, ['animals', 'cute', 'sleep', 'happy']))
+        gImages.push(_createImage(7, ['idiots', 'men']))
+        gImages.push(_createImage(8, ['cute', 'babies']))
+        gImages.push(_createImage(9, ['men', 'smart']))
+        gImages.push(_createImage(10, ['idiots', 'men']))
+        gImages.push(_createImage(11, ['men', 'smart']))
+        gImages.push(_createImage(12, ['men', 'idiots', 'fascism']))
+        gImages.push(_createImage(13, ['cute', 'babies', 'dance']))
+        gImages.push(_createImage(14, ['idiots','fascism','men']))
+        gImages.push(_createImage(15, ['cute', 'babies', 'happy']))
+        gImages.push(_createImage(16, ['animals', 'cute']))
+        gImages.push(_createImage(17, ['men', 'happy']))
+        gImages.push(_createImage(18, ['men', 'happy']))
+        gImages.push(_createImage(19, ['men', 'happy', 'smart']))
+        gImages.push(_createImage(20, ['men', 'happy']))
+        gImages.push(_createImage(21, ['men']))
+        gImages.push(_createImage(22, ['women', 'happy']))
+        gImages.push(_createImage(23, ['men', 'happy', 'smart']))
+        gImages.push(_createImage(24, ['idiots', 'fascism', 'men']))
+        gImages.push(_createImage(25, ['idiots', 'men']))
     }
     _saveGImgsToStorage();
 }
 
-function _createImg(id, keyWords) {
+function _createImage(id, keyWords) {
     return {
         id,
         keyWords,
@@ -59,6 +66,7 @@ function getTodosForDisplay() {
     let images = gImages.filter(images => {
         return img.keyWords.includes(gFilterBy);
     })
+    debugger
     return images;
 }
 

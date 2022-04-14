@@ -61,8 +61,8 @@ function onOpenPage(el) {
 }
 
 function addImgEventListeners() {
-    const ElImgs = document.querySelectorAll('.meme-img');
-    ElImgs.forEach(elImg => {
+    const elImages = document.querySelectorAll('.meme-img');
+    elImages.forEach(elImg => {
         elImg.addEventListener("click", onOpenEditor);
         elImg.addEventListener("click", onSetMemeImg);
     })

@@ -3,7 +3,7 @@
 let gSavedMemes;
 let gMeme;
 
-function initMeme() {
+function initEditorMeme() {
     gMeme = {
         selectedImgId: 0,
         selectedLineIdx: 0,
@@ -14,7 +14,6 @@ function initMeme() {
 function getImgId() {
     return gMeme.selectedImgId;
 }
-
 
 function addLine(txt, size) {
     gMeme.lines.push(_createLine(txt, size));
